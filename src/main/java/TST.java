@@ -144,7 +144,7 @@ public class TST <Value>{
     }
 
     public String longestPrefixOf(String s){
-        int index = searchLength(root, s, 0, 0) + 1;
+        int index = searchLength(root, s, 0, 0);
         return s.substring(0, index);
     }
 
@@ -163,7 +163,7 @@ public class TST <Value>{
             return searchLength(node.right, s ,d, length);
         }else{
             if (node.val != null){
-                length = d;
+                length = d + 1;
             }
             return searchLength(node.mid, s, d + 1, length);
         }
@@ -193,7 +193,7 @@ public class TST <Value>{
     public static void main(String[] args) {
         TST<Integer> tst = new TST<Integer>();
         tst.put("app",1);
-        tst.put("applic",2);
+        tst.put("application",2);
         tst.put("appl",3);
         System.out.println(tst.longestPrefixOf("application"));
     }
