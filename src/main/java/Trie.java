@@ -174,7 +174,6 @@ public class Trie<Value> {
         return searchLength(node.next[c], s + c, d + 1, length);
     }
 
-
     public void delete(String key){
         root = delete(root, key, 0);
     }
