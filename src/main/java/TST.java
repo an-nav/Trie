@@ -6,7 +6,8 @@ import java.util.Queue;
  */
 public class TST <Value>{
     private Node root;
-
+    // TST 中键的数量
+    private int n;
     private class Node{
         char c;
         Node left, mid, right;
@@ -15,6 +16,10 @@ public class TST <Value>{
         public Node(char c) {
             this.c = c;
         }
+    }
+
+    public int size(){
+        return n;
     }
 
     public Value get(String key){
@@ -45,7 +50,22 @@ public class TST <Value>{
         }
     }
 
+    public boolean contains(String key){
+        return get(key) != null;
+    }
+
+
+    /**
+     * put 方法，如果将 value 设为 null 即可从 TST 中删除指定的键
+     * @param key
+     * @param value
+     */
     public void put(String key, Value value){
+        if (contains(key)){
+            n += 1;
+        }else if (value == null){
+            n -= 1;
+        }
         root = put(root, key, value, 0);
     }
 
@@ -148,7 +168,14 @@ public class TST <Value>{
         return s.substring(0, index);
     }
 
-
+    /**
+     * 寻找最长前缀方法
+     * @param node
+     * @param s
+     * @param d
+     * @param length
+     * @return
+     */
     private int searchLength(Node node, String s, int d, int length){
         if (node == null){
             return length;
